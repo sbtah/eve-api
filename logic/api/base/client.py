@@ -1,5 +1,4 @@
 import httpx
-from logic.settings import endpoints
 from logic.settings.logging import logger
 
 
@@ -63,59 +62,3 @@ class BaseClient:
         except Exception as e:
             self.logger.error(f':Exception in {BaseClient.post.__qualname__}: {e}')
             return None
-
-    def get_types(self, page_number: int = 1):
-        params = {
-            'page': page_number
-        }
-        res = self.get(url=endpoints.UNIVERSE_TYPES, extra_params=params)
-        return res.json()
-
-
-# ALIANCES = "https://login.eveonline.com/v2/oauth/authorize"
-# TYPES = "https://esi.evetech.net/latest/universe/types"
-
-# json_data = [
-#     95465499,
-
-# ]
-
-
-# def get_types():
-#     headers = {
-#     'accept': 'application/json',
-#     'Content-Type': 'application/json',
-#     'Cache-Control': 'no-cache',
-#     }
-#     params = {
-#         'datasource': 'tranquility',
-#         'page': '1',
-#     }
-#     response = requests.get('https://esi.evetech.net/latest/universe/types', params=params, headers=headers)
-#     return response.json()
-
-
-# def get_names(ids_list: list):
-#     headers = {
-#     'accept': 'application/json',
-#     'Content-Type': 'application/json',
-#     'Cache-Control': 'no-cache',
-#     }
-#     params = {
-#     'datasource': 'tranquility',
-#     'page': '1',
-#     }
-#     response = requests.post('https://esi.evetech.net/latest/universe/names/', params=params, headers=headers, json=ids_list)
-#     return response.json()
-
-
-# print(get_names([3567,]))
-# # print(get_types())
-
-# def get_names_for_types():
-#     types_response = get_types()
-#     if types_response:
-#         names_response = get_names(types_response)
-#         return names_response
-
-# # print(get_names_for_types())
